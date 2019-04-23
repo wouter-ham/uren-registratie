@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-<home></home>
+    <ticket-overview></ticket-overview>
 @endsection
