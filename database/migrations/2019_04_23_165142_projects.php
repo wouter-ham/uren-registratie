@@ -14,7 +14,7 @@ class Projects extends Migration
     public function up()
     {
         Schema::create('projects', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('title');
             $table->string('desc');
             $table->timestamp('created_at')->nullable();
