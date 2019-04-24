@@ -1,8 +1,7 @@
 <?php
 
-Route::get('/login', function () {
-    return view('auth.login');
-});
+
+Route::view('/login', 'auth.login');
 
 Auth::routes();
 
@@ -10,10 +9,14 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('tickets', 'TicketController@index');
 
-Route::get('tickets/all', 'TicketController@getAll');
+Route::post('tickets/all', 'TicketController@getAll');
 
-Route::get('tickets/{id}', 'TicketController@getTicketById');
+Route::post('tickets/personal', 'TicketController@getPersonal');
 
-Route::get('tickets/project/{id}', 'TicketController@getByProjectId');
+Route::post('tickets/create', 'TicketController@createTicket');
 
-Route::get('tickets/personal', 'TicketController@getPersonal');
+Route::post('tickets/project/{id}', 'TicketController@getByProjectId');
+
+Route::post('tickets/{id}', 'TicketController@getTicketById');
+
+Route::post('projects/all', 'ProjectController@getAll');

@@ -28,7 +28,7 @@ class Tickets extends Migration
             $table->integer('seconds_spent')->default(0);
             $table->boolean('running')->default(1);
             $table->timestamp('deadline')->nullable();
-            $table->timestamp('last_update')->nullable();
+            $table->string('updates')->default('{}')->nullable();
             $table->timestamp('created_at')->nullable();
         });
     }

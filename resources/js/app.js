@@ -2,6 +2,11 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import VueChartkick from 'vue-chartkick';
+import Chart from 'chart.js';
+
+Vue.use(VueChartkick, {adapter: Chart});
+
 Vue.component('home', require('./components/Home.vue').default);
 
 Vue.component('ticket-overview', require('./components/TicketOverview.vue').default);
