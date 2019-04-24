@@ -2,8 +2,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                    Create a new ticket
+                <button type="button" class="btn btn-primary" style="margin-bottom:30px" data-toggle="modal" data-target="#exampleModal">
+                    Create a new Ticket
                 </button>
 
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
@@ -60,7 +60,7 @@
                         </button>
                         <h1>{{ singleTicket.title }}</h1>
                         <p>{{ singleTicket.desc }}</p>
-                        <line-chart v-if="chartData != null" :data="chartData"></line-chart>
+                        <line-chart v-if="chartData != null" :data="chartData" label="Seconds" xtitle="Date/time" ytitle="Time spent"></line-chart>
                     </div>
                     <div class="default" v-else>
                         <h1>Ticket overview</h1>
@@ -100,6 +100,7 @@
                     .then((response) => {
                         this.singleTicket = response.data[0];
                         this.chartData = JSON.parse(this.singleTicket.updates);
+                        console.log(this.chartData);
                     });
             },
             createTicket: function (e) {

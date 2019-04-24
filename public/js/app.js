@@ -1809,6 +1809,46 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ProjectOverview",
   data: function data() {
@@ -1817,13 +1857,32 @@ __webpack_require__.r(__webpack_exports__);
       tickets: null
     };
   },
-  created: function created() {},
+  created: function created() {
+    this.getProjects();
+  },
   methods: {
     getProjects: function getProjects() {
       var _this = this;
 
       window.axios.post('projects/all').then(function (response) {
         _this.projects = response.data;
+      });
+    },
+    createProject: function createProject(e) {
+      e.preventDefault();
+      var formData = new FormData();
+      formData.append('title', document.getElementById('title').value);
+      formData.append('desc', document.getElementById('desc').value);
+      document.getElementById('title').value = "";
+      document.getElementById('desc').value = "";
+      window.axios.post('projects/create', formData).then(function (response) {
+        console.log(response.data);
+      });
+      this.getProjects();
+    },
+    deleteProject: function deleteProject(id) {
+      window.axios.post('projects/' + id + '/delete').then(function (response) {
+        console.log(response.data);
       });
     }
   }
@@ -1943,6 +2002,7 @@ __webpack_require__.r(__webpack_exports__);
       window.axios.post('tickets/' + id).then(function (response) {
         _this2.singleTicket = response.data[0];
         _this2.chartData = JSON.parse(_this2.singleTicket.updates);
+        console.log(_this2.chartData);
       });
     },
     createTicket: function createTicket(e) {
@@ -72930,15 +72990,160 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "modal fade",
+          attrs: {
+            id: "exampleModal",
+            tabindex: "-1",
+            role: "dialog",
+            "aria-labelledby": "exampleModalLabel",
+            "aria-hidden": "true"
+          }
+        },
+        [
+          _c(
+            "div",
+            { staticClass: "modal-dialog", attrs: { role: "document" } },
+            [
+              _c("div", { staticClass: "modal-content" }, [
+                _vm._m(1),
+                _vm._v(" "),
+                _c(
+                  "form",
+                  {
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.createProject($event)
+                      }
+                    }
+                  },
+                  [_vm._m(2), _vm._v(" "), _vm._m(3)]
+                )
+              ])
+            ]
+          )
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "row" },
+      _vm._l(_vm.projects, function(project) {
+        return _c("div", { staticClass: "col-md-4" }, [
+          _c("div", { staticClass: "jumbotron" }, [
+            _c("h1", [_vm._v(_vm._s(project.title))])
+          ])
+        ])
+      }),
+      0
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row" })
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          staticStyle: { "margin-bottom": "30px" },
+          attrs: {
+            type: "button",
+            "data-toggle": "modal",
+            "data-target": "#exampleModal"
+          }
+        },
+        [_vm._v("\n                Create a new Project\n            ")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
+        [_vm._v("Create a new project")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-body" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            type: "text",
+            name: "title",
+            id: "title",
+            placeholder: "Title",
+            required: ""
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            type: "text",
+            name: "desc",
+            id: "desc",
+            placeholder: "Description",
+            required: ""
+          }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Close")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+        [_vm._v("Save changes")]
+      )
     ])
   }
 ]
@@ -72970,13 +73175,14 @@ var render = function() {
           "button",
           {
             staticClass: "btn btn-primary",
+            staticStyle: { "margin-bottom": "30px" },
             attrs: {
               type: "button",
               "data-toggle": "modal",
               "data-target": "#exampleModal"
             }
           },
-          [_vm._v("\n                Create a new ticket\n            ")]
+          [_vm._v("\n                Create a new Ticket\n            ")]
         ),
         _vm._v(" "),
         _c(
@@ -73130,7 +73336,14 @@ var render = function() {
                   _c("p", [_vm._v(_vm._s(_vm.singleTicket.desc))]),
                   _vm._v(" "),
                   _vm.chartData != null
-                    ? _c("line-chart", { attrs: { data: _vm.chartData } })
+                    ? _c("line-chart", {
+                        attrs: {
+                          data: _vm.chartData,
+                          label: "Seconds",
+                          xtitle: "Date/time",
+                          ytitle: "Time spent"
+                        }
+                      })
                     : _vm._e()
                 ],
                 1

@@ -24,3 +24,7 @@ Route::post('tickets/{id}', 'TicketController@getTicketById');
 Route::get('projects', 'ProjectController@index');
 
 Route::post('projects/all', 'ProjectController@getAll');
+
+Route::post('projects/create', 'ProjectController@createProject');
+
+Route::post('projects/{id}/delete', 'ProjectController@createProject');
