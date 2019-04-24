@@ -1805,8 +1805,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "ProjectOverview"
+  name: "ProjectOverview",
+  data: function data() {
+    return {
+      projects: null,
+      tickets: null
+    };
+  },
+  created: function created() {},
+  methods: {
+    getProjects: function getProjects() {
+      var _this = this;
+
+      window.axios.post('projects/all').then(function (response) {
+        _this.projects = response.data;
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -1889,6 +1909,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "TicketOverview",
   data: function data() {
@@ -1896,7 +1922,7 @@ __webpack_require__.r(__webpack_exports__);
       projects: null,
       tickets: null,
       singleTicket: null,
-      chartData: {}
+      chartData: []
     };
   },
   created: function created() {
@@ -1925,6 +1951,9 @@ __webpack_require__.r(__webpack_exports__);
       formData.append('title', document.getElementById('title').value);
       formData.append('desc', document.getElementById('desc').value);
       formData.append('project', document.getElementById('project').value);
+      document.getElementById('title').value = "";
+      document.getElementById('desc').value = "";
+      document.getElementById('project').value = "";
       window.axios.post('tickets/create', formData).then(function (response) {
         console.log(response.data);
       });
@@ -1935,6 +1964,13 @@ __webpack_require__.r(__webpack_exports__);
 
       window.axios.post('projects/all').then(function (response) {
         _this3.projects = response.data;
+      });
+    },
+    toggleTimer: function toggleTimer(id) {
+      var _this4 = this;
+
+      window.axios.post('tickets/toggle/' + id).then(function (response) {
+        _this4.getTicketById(id);
       });
     }
   }
@@ -72894,9 +72930,18 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "row" })
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -72974,7 +73019,11 @@ var render = function() {
                           "select",
                           {
                             staticClass: "form-control",
-                            attrs: { id: "project", name: "project" }
+                            attrs: {
+                              id: "project",
+                              name: "project",
+                              required: ""
+                            }
                           },
                           [
                             _c(
@@ -73038,6 +73087,44 @@ var render = function() {
                 "div",
                 { staticClass: "info" },
                 [
+                  !_vm.singleTicket.running
+                    ? _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-outline-info",
+                          staticStyle: { float: "right" },
+                          attrs: { type: "button" },
+                          on: {
+                            click: function($event) {
+                              return _vm.toggleTimer(_vm.singleTicket.id)
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        Start timer\n                    "
+                          )
+                        ]
+                      )
+                    : _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-outline-danger",
+                          staticStyle: { float: "right" },
+                          attrs: { type: "button" },
+                          on: {
+                            click: function($event) {
+                              return _vm.toggleTimer(_vm.singleTicket.id)
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        Stop timer\n                    "
+                          )
+                        ]
+                      ),
+                  _vm._v(" "),
                   _c("h1", [_vm._v(_vm._s(_vm.singleTicket.title))]),
                   _vm._v(" "),
                   _c("p", [_vm._v(_vm._s(_vm.singleTicket.desc))]),
@@ -73099,7 +73186,8 @@ var staticRenderFns = [
           type: "text",
           name: "title",
           id: "title",
-          placeholder: "Title"
+          placeholder: "Title",
+          required: ""
         }
       })
     ])
@@ -73115,7 +73203,8 @@ var staticRenderFns = [
           type: "text",
           name: "desc",
           id: "desc",
-          placeholder: "Description"
+          placeholder: "Description",
+          required: ""
         }
       })
     ])
@@ -85684,8 +85773,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/woutervanderham/local/uren-registratie/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/woutervanderham/local/uren-registratie/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

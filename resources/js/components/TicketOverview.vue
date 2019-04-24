@@ -19,12 +19,12 @@
                             <form @submit.prevent="createTicket">
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <input type="text" name="title" class="form-control" id="title" placeholder="Title">
+                                        <input type="text" name="title" class="form-control" id="title" placeholder="Title" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" name="desc" class="form-control" id="desc" placeholder="Description">
+                                        <input type="text" name="desc" class="form-control" id="desc" placeholder="Description" required>
                                     </div>
-                                    <select class="form-control" id="project" name="project">
+                                    <select class="form-control" id="project" name="project" required>
                                         <option selected disabled>Project:</option>
                                         <option v-for="project in projects" v-bind:value="project.id">{{ project.title }}</option>
                                     </select>
@@ -52,6 +52,12 @@
             <div class="col-md-8">
                 <div class="jumbotron">
                     <div class="info" v-if="singleTicket !== null">
+                        <button v-if="!singleTicket.running" type="button" class="btn btn-outline-info" style="float:right" v-on:click="toggleTimer(singleTicket.id)">
+                            Start timer
+                        </button>
+                        <button v-else type="button" class="btn btn-outline-danger" style="float:right" v-on:click="toggleTimer(singleTicket.id)">
+                            Stop timer
+                        </button>
                         <h1>{{ singleTicket.title }}</h1>
                         <p>{{ singleTicket.desc }}</p>
                         <line-chart v-if="chartData != null" :data="chartData"></line-chart>
@@ -75,7 +81,7 @@
                 projects: null,
                 tickets: null,
                 singleTicket: null,
-                chartData: {}
+                chartData: []
             }
         },
         created: function () {
@@ -105,6 +111,10 @@
                 formData.append('desc', document.getElementById('desc').value);
                 formData.append('project', document.getElementById('project').value);
 
+                document.getElementById('title').value = "";
+                document.getElementById('desc').value = "";
+                document.getElementById('project').value = "";
+
                 window.axios.post('tickets/create', formData)
                     .then((response) => {
                         console.log(response.data);
@@ -116,6 +126,12 @@
                 window.axios.post('projects/all')
                     .then((response) => {
                         this.projects = response.data;
+                    });
+            },
+            toggleTimer: function (id) {
+                window.axios.post('tickets/toggle/' + id)
+                    .then((response) => {
+                        this.getTicketById(id);
                     });
             }
         }
