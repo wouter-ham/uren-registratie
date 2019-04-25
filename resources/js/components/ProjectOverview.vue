@@ -1,8 +1,9 @@
 <template>
-    <div class="container">
+    <div class="container mt-4">
         <div class="row">
             <div class="col-md-12">
-                <button type="button" class="btn btn-primary" style="margin-bottom:30px" data-toggle="modal" data-target="#exampleModal">
+                <button type="button" class="btn btn-primary" style="margin-bottom:30px" data-toggle="modal"
+                        data-target="#exampleModal">
                     Create a new Project
                 </button>
             </div>
@@ -21,10 +22,12 @@
                         <form @submit.prevent="createProject">
                             <div class="modal-body">
                                 <div class="form-group">
-                                    <input type="text" name="title" class="form-control" id="title" placeholder="Title" required>
+                                    <input type="text" name="title" class="form-control" id="title" placeholder="Title"
+                                           required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" name="desc" class="form-control" id="desc" placeholder="Description" required>
+                                    <input type="text" name="desc" class="form-control" id="desc"
+                                           placeholder="Description" required>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -37,9 +40,25 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4" v-for="project in projects">
-                <div class="jumbotron">
-                    <h1>{{ project.title }}</h1>
+            <div class="col-md-3 mb-3" v-for="project in projects">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">{{ project.title }}</h3>
+                        <p class="card-text">{{ project.desc }}</p>
+                        <br>
+                        <p class="card-text" v-if="project.tickets.length >= 1">Most recent tickets:</p>
+                    </div>
+                    <ul class="list-group">
+                        <li v-for="ticket in project.tickets"
+                            class="list-group-item d-flex justify-content-between align-items-center">
+                            {{ ticket.title }}
+                            <span class="badge badge-primary badge-pill">{{ new Date(JSON.parse(ticket.updates)[JSON.parse(ticket.updates).length-1][0]*1000).toLocaleDateString() }}</span>
+                        </li>
+                    </ul>
+
+                    <div class="card-body">
+                        <a v-bind:href="'/projects/'+project.id+''" class="card-link">Go to project -></a>
+                    </div>
                 </div>
             </div>
         </div>

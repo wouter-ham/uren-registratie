@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -29,5 +30,10 @@ class HomeController extends Controller
         } else {
             redirect('/login');
         }
+    }
+
+    public function getUsernameById ($id)
+    {
+        return DB::table('users')->where('id', '=', $id)->get("name");
     }
 }

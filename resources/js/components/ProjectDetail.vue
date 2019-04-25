@@ -1,10 +1,18 @@
 <template>
-    
+
 </template>
 
 <script>
     export default {
-        name: "ProjectDetail"
+        name: "ProjectDetail",
+        data() {
+            return {
+
+            }
+        },
+        created: function () {
+
+        }
     }
 </script>
 

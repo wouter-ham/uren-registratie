@@ -27,4 +27,8 @@ Route::post('projects/all', 'ProjectController@getAll');
 
 Route::post('projects/create', 'ProjectController@createProject');
 
-Route::post('projects/{id}/delete', 'ProjectController@createProject');
+Route::get('projects/{id}', 'ProjectController@detail');
+
+Route::post('projects/{id}/delete', 'ProjectController@deleteProject');
+
+Route::post('users/{id}/name', 'HomeController@getUsernameById');

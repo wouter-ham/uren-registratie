@@ -18,9 +18,29 @@ class ProjectController extends Controller
         }
     }
 
+    public function detail ($id)
+    {
+        if (Auth::check()) {
+
+            $project = DB::table('projects')->where('id', '=', $id)->get();
+
+            $tickets = DB::table('tickets')->where('project_id', '=', $project[0]->id)->get();
+
+            return view('layouts.project-detail', ['project' => $project, 'tickets' => $tickets]);
+        } else {
+            redirect('/login');
+        }
+    }
+
     public function getAll()
     {
-        return DB::table("projects")->get();
+        $projects = DB::table("projects")->get();
+
+        foreach ($projects as $project) {
+            $project->tickets = DB::table("tickets")->where('project_id', '=', $project->id)->limit(4)->get();
+        }
+
+        return $projects;
     }
 
     public function createProject (Request $request)
@@ -32,5 +52,10 @@ class ProjectController extends Controller
         DB::table('projects')->insert(
             ['title' => $title, 'desc' => $desc, 'created_at' => $current_timestamp]
         );
+    }
+
+    public function deleteProject ()
+    {
+
     }
 }

@@ -1787,7 +1787,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "ProjectDetail"
+  name: "ProjectDetail",
+  data: function data() {
+    return {};
+  },
+  created: function created() {}
 });
 
 /***/ }),
@@ -1801,6 +1805,25 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -72990,7 +73013,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
+  return _c("div", { staticClass: "container mt-4" }, [
     _c("div", { staticClass: "row" }, [
       _vm._m(0),
       _vm._v(" "),
@@ -73037,9 +73060,73 @@ var render = function() {
       "div",
       { staticClass: "row" },
       _vm._l(_vm.projects, function(project) {
-        return _c("div", { staticClass: "col-md-4" }, [
-          _c("div", { staticClass: "jumbotron" }, [
-            _c("h1", [_vm._v(_vm._s(project.title))])
+        return _c("div", { staticClass: "col-md-3 mb-3" }, [
+          _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card-body" }, [
+              _c("h3", { staticClass: "card-title" }, [
+                _vm._v(_vm._s(project.title))
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "card-text" }, [
+                _vm._v(_vm._s(project.desc))
+              ]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              project.tickets.length >= 1
+                ? _c("p", { staticClass: "card-text" }, [
+                    _vm._v("Most recent tickets:")
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c(
+              "ul",
+              { staticClass: "list-group" },
+              _vm._l(project.tickets, function(ticket) {
+                return _c(
+                  "li",
+                  {
+                    staticClass:
+                      "list-group-item d-flex justify-content-between align-items-center"
+                  },
+                  [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(ticket.title) +
+                        "\n                        "
+                    ),
+                    _c(
+                      "span",
+                      { staticClass: "badge badge-primary badge-pill" },
+                      [
+                        _vm._v(
+                          _vm._s(
+                            new Date(
+                              JSON.parse(ticket.updates)[
+                                JSON.parse(ticket.updates).length - 1
+                              ][0] * 1000
+                            ).toLocaleDateString()
+                          )
+                        )
+                      ]
+                    )
+                  ]
+                )
+              }),
+              0
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-body" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "card-link",
+                  attrs: { href: "/projects/" + project.id + "" }
+                },
+                [_vm._v("Go to project ->")]
+              )
+            ])
           ])
         ])
       }),
@@ -85986,8 +86073,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/woutervanderham/local/uren-registratie/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/woutervanderham/local/uren-registratie/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
