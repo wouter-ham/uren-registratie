@@ -2,8 +2,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                    Create a new ticket
+                <button type="button" class="btn btn-primary" style="margin-bottom:30px" data-toggle="modal" data-target="#exampleModal">
+                    Create a new Ticket
                 </button>
 
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
@@ -19,12 +19,12 @@
                             <form @submit.prevent="createTicket">
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <input type="text" name="title" class="form-control" id="title" placeholder="Title">
+                                        <input type="text" name="title" class="form-control" id="title" placeholder="Title" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" name="desc" class="form-control" id="desc" placeholder="Description">
+                                        <input type="text" name="desc" class="form-control" id="desc" placeholder="Description" required>
                                     </div>
-                                    <select class="form-control" id="project" name="project">
+                                    <select class="form-control" id="project" name="project" required>
                                         <option selected disabled>Project:</option>
                                         <option v-for="project in projects" v-bind:value="project.id">{{ project.title }}</option>
                                     </select>
@@ -52,9 +52,15 @@
             <div class="col-md-8">
                 <div class="jumbotron">
                     <div class="info" v-if="singleTicket !== null">
+                        <button v-if="!singleTicket.running" type="button" class="btn btn-outline-info" style="float:right" v-on:click="toggleTimer(singleTicket.id)">
+                            Start timer
+                        </button>
+                        <button v-else type="button" class="btn btn-outline-danger" style="float:right" v-on:click="toggleTimer(singleTicket.id)">
+                            Stop timer
+                        </button>
                         <h1>{{ singleTicket.title }}</h1>
                         <p>{{ singleTicket.desc }}</p>
-                        <line-chart v-if="chartData != null" :data="chartData"></line-chart>
+                        <line-chart v-if="chartData != null" :data="chartData" label="Seconds" xtitle="Date/time" ytitle="Time spent"></line-chart>
                     </div>
                     <div class="default" v-else>
                         <h1>Ticket overview</h1>
@@ -75,7 +81,7 @@
                 projects: null,
                 tickets: null,
                 singleTicket: null,
-                chartData: {}
+                chartData: []
             }
         },
         created: function () {
@@ -94,6 +100,7 @@
                     .then((response) => {
                         this.singleTicket = response.data[0];
                         this.chartData = JSON.parse(this.singleTicket.updates);
+                        console.log(this.chartData);
                     });
             },
             createTicket: function (e) {
@@ -104,6 +111,10 @@
                 formData.append('title', document.getElementById('title').value);
                 formData.append('desc', document.getElementById('desc').value);
                 formData.append('project', document.getElementById('project').value);
+
+                document.getElementById('title').value = "";
+                document.getElementById('desc').value = "";
+                document.getElementById('project').value = "";
 
                 window.axios.post('tickets/create', formData)
                     .then((response) => {
@@ -116,6 +127,12 @@
                 window.axios.post('projects/all')
                     .then((response) => {
                         this.projects = response.data;
+                    });
+            },
+            toggleTimer: function (id) {
+                window.axios.post('tickets/toggle/' + id)
+                    .then((response) => {
+                        this.getTicketById(id);
                     });
             }
         }

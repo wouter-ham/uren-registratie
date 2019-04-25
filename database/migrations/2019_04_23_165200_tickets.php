@@ -27,9 +27,9 @@ class Tickets extends Migration
                 ->onDelete('cascade');
             $table->integer('seconds_spent')->default(0);
             $table->boolean('running')->default(1);
-            $table->timestamp('deadline')->nullable();
-            $table->string('updates')->default('{}')->nullable();
-            $table->timestamp('created_at')->nullable();
+            $table->integer('deadline')->nullable();
+            $table->mediumText('updates')->nullable();
+            $table->integer('created_at')->nullable();
         });
     }
 
