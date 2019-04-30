@@ -2024,7 +2024,16 @@ __webpack_require__.r(__webpack_exports__);
 
       window.axios.post('tickets/' + id).then(function (response) {
         _this2.singleTicket = response.data[0];
-        _this2.chartData = JSON.parse(_this2.singleTicket.updates);
+        var data = JSON.parse(_this2.singleTicket.updates);
+        console.log(JSON.parse(_this2.singleTicket.updates));
+
+        for (var i = 0; i < data.length; i++) {
+          var time = new Date(data[i][0] * 1000);
+          data[i][0] = time.toDateString() + " " + time.getHours() + ":" + time.getMinutes();
+          data[i][1] = Math.floor(data[i][1] / 60);
+        }
+
+        _this2.chartData = data;
         console.log(_this2.chartData);
       });
     },
@@ -2041,6 +2050,7 @@ __webpack_require__.r(__webpack_exports__);
         console.log(response.data);
       });
       this.getPersonalTickets();
+      $("#exampleModal").modal("hide");
     },
     getProjects: function getProjects() {
       var _this3 = this;
@@ -73426,9 +73436,9 @@ var render = function() {
                     ? _c("line-chart", {
                         attrs: {
                           data: _vm.chartData,
-                          label: "Seconds",
+                          label: "Minutes spent",
                           xtitle: "Date/time",
-                          ytitle: "Time spent"
+                          ytitle: "Minutes spent"
                         }
                       })
                     : _vm._e()
@@ -86073,8 +86083,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/woutervanderham/local/uren-registratie/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/woutervanderham/local/uren-registratie/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

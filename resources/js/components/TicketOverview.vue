@@ -60,7 +60,7 @@
                         </button>
                         <h1>{{ singleTicket.title }}</h1>
                         <p>{{ singleTicket.desc }}</p>
-                        <line-chart v-if="chartData != null" :data="chartData" label="Seconds" xtitle="Date/time" ytitle="Time spent"></line-chart>
+                        <line-chart v-if="chartData != null" :data="chartData" label="Minutes spent" xtitle="Date/time" ytitle="Minutes spent"></line-chart>
                     </div>
                     <div class="default" v-else>
                         <h1>Ticket overview</h1>
@@ -99,7 +99,18 @@
                 window.axios.post('tickets/' + id)
                     .then((response) => {
                         this.singleTicket = response.data[0];
-                        this.chartData = JSON.parse(this.singleTicket.updates);
+                        var data = JSON.parse(this.singleTicket.updates);
+
+                        console.log(JSON.parse(this.singleTicket.updates));
+
+                        for (var i = 0; i < data.length; i++) {
+                            var time = new Date(data[i][0] * 1000);
+                            data[i][0] = time.toDateString() + " " + time.getHours() + ":" + time.getMinutes();
+                            data[i][1] = Math.floor(data[i][1] / 60);
+                        }
+
+                        this.chartData = data;
+
                         console.log(this.chartData);
                     });
             },
@@ -122,6 +133,8 @@
                     });
 
                 this.getPersonalTickets();
+
+                $("#exampleModal").modal("hide");
             },
             getProjects: function () {
                 window.axios.post('projects/all')
