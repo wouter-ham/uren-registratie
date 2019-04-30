@@ -57,10 +57,11 @@
                     </ul>
 
                     <div class="card-body">
-                        <a v-bind:href="'/projects/'+project.id+''" class="card-link">Go to project -></a>
+                        <a v-bind:href="'projects/'+project.id+''" class="card-link">Go to project -></a>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </template>
