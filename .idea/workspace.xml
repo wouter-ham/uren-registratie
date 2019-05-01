@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4d85d4fe-5aae-4155-a382-47bd52f915f5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/ProjectOverview.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/ProjectOverview.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/TicketOverview.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/TicketOverview.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/project-detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/project-detail.blade.php" afterDir="false" />
-    </list>
+    <list default="true" id="4d85d4fe-5aae-4155-a382-47bd52f915f5" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,8 +48,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/layouts/project-detail.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="14" lean-forward="true" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
+            <state relative-caret-position="240">
+              <caret line="16" column="46" lean-forward="true" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -345,12 +340,12 @@
       <workItem from="1556259625593" duration="17000" />
       <workItem from="1556630080195" duration="157000" />
       <workItem from="1556630252466" duration="10978000" />
-      <workItem from="1556721048176" duration="1235000" />
+      <workItem from="1556721048176" duration="1561000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65233000" />
+    <option name="totallyTimeSpent" value="65559000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -665,8 +660,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/layouts/project-detail.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="14" lean-forward="true" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
+        <state relative-caret-position="240">
+          <caret line="16" column="46" lean-forward="true" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
         </state>
       </provider>
     </entry>
