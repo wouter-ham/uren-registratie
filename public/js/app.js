@@ -1903,6 +1903,7 @@ __webpack_require__.r(__webpack_exports__);
         console.log(response.data);
       });
       this.getProjects();
+      $("#exampleModal").modal("hide");
     },
     deleteProject: function deleteProject(id) {
       window.axios.post('projects/' + id + '/delete').then(function (response) {
@@ -2035,7 +2036,6 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         _this2.chartData = data;
-        console.log(_this2.chartData);
       });
     },
     createTicket: function createTicket(e) {

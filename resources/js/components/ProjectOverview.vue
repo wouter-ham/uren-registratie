@@ -102,6 +102,8 @@
                     });
 
                 this.getProjects();
+
+                $("#exampleModal").modal("hide");
             },
             deleteProject: function (id) {
                 window.axios.post('projects/' + id + '/delete')

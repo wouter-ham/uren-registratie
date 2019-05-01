@@ -4,10 +4,8 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <div class="jumbotron">
-                    <h1>{{ $project[0]->title }}</h1>
-                    <h3>{{ $project[0]->desc }}</h3>
-                </div>
+                <h1>{{ $project[0]->title }}</h1>
+                <h3>{{ $project[0]->desc }}</h3>
             </div>
         </div>
     </div>
@@ -24,8 +22,10 @@
                                 <h6 class="text-center">{{ $ticket->desc }}</h6>
                                 <hr>
                                 <ul class="fa-ul">
-                                    <li>Created at: {{ date("Y-m-d H:m:s", (string) last(json_decode($ticket->updates))[0]) }}</li>
-                                    <li>Time spent: {{ floor($ticket->seconds_spent / 3600) . ":" . floor(($ticket->seconds_spent / 60) % 60) . ":" . $ticket->seconds_spent % 60 }}</li>
+                                    <li>Created
+                                        at: {{ date("Y-m-d H:m:s", (string) last(json_decode($ticket->updates))[0]) }}</li>
+                                    <li>Time
+                                        spent: {{ floor($ticket->seconds_spent / 3600) . ":" . floor(($ticket->seconds_spent / 60) % 60) . ":" . $ticket->seconds_spent % 60 }}</li>
                                 </ul>
                             </div>
                         </div>

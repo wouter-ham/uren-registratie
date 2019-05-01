@@ -111,7 +111,6 @@
 
                         this.chartData = data;
 
-                        console.log(this.chartData);
                     });
             },
             createTicket: function (e) {
