@@ -23478,7 +23478,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.ticket {\n    background: #007bff;\n    background: linear-gradient(to right, #0062E6, #33AEFF);\n}\n.pricing .ticket {\n    border: none;\n    border-radius: 1rem;\n    transition: all 0.2s;\n    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);\n    margin: 1rem 0;\n}\n.pricing .text-muted {\n    opacity: 0.7;\n}\n@media (min-width: 992px) {\n.pricing .ticket:hover {\n        margin-top: -.25rem;\n        margin-bottom: .25rem;\n        box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);\n}\n.pricing .card:hover .btn {\n        opacity: 1;\n}\n}\n", ""]);
+exports.push([module.i, "\n.ticket {\n    background: #007bff;\n    background: linear-gradient(to right, #0062E6, #33AEFF);\n}\n.pricing .ticket {\n    border: none;\n    border-radius: 1rem;\n    transition: all 0.2s;\n    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);\n    margin: 1rem 0;\n}\n.pricing .text-muted {\n    opacity: 0.7;\n}\n@media (min-width: 992px) {\n.pricing .ticket:hover {\n        box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);\n}\n}\n", ""]);
 
 // exports
 
