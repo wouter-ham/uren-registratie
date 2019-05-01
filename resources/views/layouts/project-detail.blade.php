@@ -18,7 +18,7 @@
                 <!-- Free Tier -->
                 @foreach ($tickets as $ticket)
                     <div class="col-lg-4">
-                        <div class="card mb-5 text-white">
+                        <div class="card ticket mb-5 text-white">
                             <div class="card-body">
                                 <h4 class="text-center">{{ $ticket->title }}</h4>
                                 <h6 class="text-center">{{ $ticket->desc }}</h6>

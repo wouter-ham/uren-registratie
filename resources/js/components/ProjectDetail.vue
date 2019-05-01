@@ -18,12 +18,12 @@
 
 <style>
 
-    .card {
+    .ticket {
         background: #007bff;
         background: linear-gradient(to right, #0062E6, #33AEFF);
     }
 
-    .pricing .card {
+    .pricing .ticket {
         border: none;
         border-radius: 1rem;
         transition: all 0.2s;
@@ -36,7 +36,7 @@
     }
 
     @media (min-width: 992px) {
-        .pricing .card:hover {
+        .pricing .ticket:hover {
             margin-top: -.25rem;
             margin-bottom: .25rem;
             box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
